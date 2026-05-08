@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CLINICON 2026</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Inter',sans-serif;
+      background:#0a0f1e;
+      color:#fff;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    :root{
+      --bg:#0a0f1e;
+      --card:#121a2d;
+      --gold:#c9a84c;
+      --white:#ffffff;
+      --muted:#b9c0d0;
+    }
+
+    h1,h2,h3,h4{
+      font-family:'Playfair Display',serif;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    section{
+      padding:100px 0;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      position:fixed;
+      top:0;
+      width:100%;
+      z-index:999;
+      background:rgba(10,15,30,0.95);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(201,168,76,0.15);
+    }
+
+    .nav-container{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:18px 5%;
+    }
+
+    .logo-area{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    #logo{
+      width:45px;
+      height:45px;
+      object-fit:cover;
+      border-radius:50%;
+      border:2px solid var(--gold);
+      background:#1d2740;
+    }
+
+    .brand{
+      font-weight:700;
+      font-size:1.2rem;
+      color:var(--gold);
+      letter-spacing:1px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:25px;
+      align-items:center;
+    }
+
+    .nav-links a{
+      color:#fff;
+      font-size:0.95rem;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      color:var(--gold);
+    }
+
+    .menu-toggle{
+      display:none;
+      flex-direction:column;
+      cursor:pointer;
+      gap:5px;
+    }
+
+    .menu-toggle span{
+      width:25px;
+      height:3px;
+      background:#fff;
+      border-radius:2px;
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      position:relative;
+      background:
+      linear-gradient(rgba(10,15,30,0.8), rgba(10,15,30,0.95)),
+      radial-gradient(circle at top right, rgba(201,168,76,0.15), transparent 30%);
+    }
+
+    .hero-content{
+      max-width:850px;
+      padding-top:80px;
+    }
+
+    .hero-logo-placeholder{
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      margin:0 auto 30px;
+      background:#18233d;
+      border:2px solid var(--gold);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    .hero h1{
+      font-size:4rem;
+      margin-bottom:20px;
+      color:var(--gold);
+    }
+
+    .hero p.tagline{
+      font-size:1.4rem;
+      margin-bottom:20px;
+      color:#fff;
+    }
+
+    .hero .details{
+      color:var(--muted);
+      margin-bottom:15px;
+      font-size:1.05rem;
+    }
+
+    .hero .note{
+      color:#d9d9d9;
+      font-style:italic;
+      margin-bottom:35px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 32px;
+      background:var(--gold);
+      color:#0a0f1e;
+      border-radius:50px;
+      font-weight:700;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 10px 25px rgba(201,168,76,0.25);
+    }
+
+    /* HEADINGS */
+
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h2{
+      font-size:2.7rem;
+      color:var(--gold);
+      margin-bottom:15px;
+    }
+
+    .section-title p{
+      color:var(--muted);
+      max-width:700px;
+      margin:auto;
+    }
+
+    /* ABOUT */
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .about-card{
+      background:var(--card);
+      padding:35px;
+      border-radius:20px;
+      border:1px solid rgba(201,168,76,0.1);
+      transition:0.3s;
+    }
+
+    .about-card:hover{
+      transform:translateY(-5px);
+      border-color:rgba(201,168,76,0.4);
+    }
+
+    /* CARDS */
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:25px;
+    }
+
+    .card{
+      background:var(--card);
+      padding:30px;
+      border-radius:20px;
+      transition:0.3s;
+      border:1px solid rgba(201,168,76,0.08);
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+      border-color:rgba(201,168,76,0.4);
+      box-shadow:0 12px 35px rgba(0,0,0,0.35);
+    }
+
+    .card h3{
+      margin-bottom:12px;
+      color:var(--gold);
+      font-size:1.3rem;
+    }
+
+    .card p{
+      color:var(--muted);
+      font-size:0.95rem;
+    }
+
+    .emoji{
+      font-size:2rem;
+      margin-bottom:15px;
+    }
+
+    /* TRIALS */
+
+    .trials{
+      background:linear-gradient(135deg,#121a2d,#1a2540);
+      border-top:1px solid rgba(201,168,76,0.2);
+      border-bottom:1px solid rgba(201,168,76,0.2);
+    }
+
+    .trials-box{
+      text-align:center;
+      padding:40px;
+      border-radius:25px;
+      border:2px solid rgba(201,168,76,0.2);
+      background:rgba(255,255,255,0.02);
+    }
+
+    .trials-box h2{
+      color:var(--gold);
+      font-size:2.5rem;
+      margin-bottom:20px;
+    }
+
+    .trials-box p{
+      max-width:850px;
+      margin:auto;
+      color:#d0d5e2;
+    }
+
+    /* HIGHLIGHTS */
+
+    .highlight-list{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+    }
+
+    .highlight-item{
+      background:var(--card);
+      padding:25px;
+      border-radius:18px;
+      border-left:4px solid var(--gold);
+    }
+
+    /* FORM */
+
+    .form-container{
+      background:var(--card);
+      padding:40px;
+      border-radius:25px;
+      max-width:850px;
+      margin:auto;
+    }
+
+    form{
+      display:grid;
+      gap:20px;
+    }
+
+    input, textarea{
+      width:100%;
+      padding:15px;
+      border:none;
+      border-radius:12px;
+      background:#0f1628;
+      color:#fff;
+      outline:none;
+    }
+
+    input::placeholder{
+      color:#9aa3b5;
+    }
+
+    .checkbox-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:10px;
+    }
+
+    .checkbox-grid label{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      background:#0f1628;
+      padding:12px;
+      border-radius:10px;
+      font-size:0.95rem;
+    }
+
+    button{
+      border:none;
+      cursor:pointer;
+      font-size:1rem;
+    }
+
+    /* FOOTER */
+
+    footer{
+      padding:50px 0;
+      border-top:1px solid rgba(201,168,76,0.1);
+      text-align:center;
+    }
+
+    .footer-logo{
+      width:80px;
+      height:80px;
+      background:#18233d;
+      margin:0 auto 20px;
+      border-radius:50%;
+      border:2px solid var(--gold);
+    }
+
+    .socials{
+      display:flex;
+      justify-content:center;
+      gap:15px;
+      margin-top:20px;
+    }
+
+    .social{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      background:#18233d;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(201,168,76,0.2);
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px){
+
+      .nav-links{
+        position:absolute;
+        top:75px;
+        right:0;
+        background:#0f1628;
+        flex-direction:column;
+        width:100%;
+        padding:30px 0;
+        display:none;
+      }
+
+      .nav-links.active{
+        display:flex;
+      }
+
+      .menu-toggle{
+        display:flex;
+      }
+
+      .hero h1{
+        font-size:2.8rem;
+      }
+
+      .hero p.tagline{
+        font-size:1.1rem;
+      }
+
+      section{
+        padding:80px 0;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+    <div class="nav-container">
+
+      <div class="logo-area">
+        <img id="logo" src="" alt="CLINICON Logo">
+        <div class="brand">CLINICON 2026</div>
+      </div>
+
+      <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#academic">Academic</a>
+        <a href="#sports">Sports</a>
+        <a href="#community">Community</a>
+        <a href="#trials">Trials</a>
+        <a href="#highlights">Highlights</a>
+        <a href="#interest">Register Interest</a>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content" data-aos="fade-up">
+
+      <div class="hero-logo-placeholder">
+        <img id="logo" src="" alt="Logo">
+      </div>
+
+      <h1>CLINICON 2026</h1>
+
+      <p class="tagline">
+        Medicine Beyond the Classroom
+      </p>
+
+      <p class="details">
+        October 2026 | 3-Day Summit | Faculty of Medicine
+      </p>
+
+      <p class="note">
+        Exact dates to be confirmed by the Faculty
+      </p>
+
+      <a href="#interest" class="btn">
+        Stay Tuned
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <h2>About CLINICON 2026</h2>
+        <p>
+          A landmark medical student summit celebrating innovation, education,
+          collaboration, culture, and leadership in medicine.
+        </p>
+      </div>
+
+      <div class="about-grid">
+
+        <div class="about-card" data-aos="fade-up">
+          <h3>What is CLINICON?</h3>
+          <p>
+            CLINICON 2026 is a multi-dimensional medical summit designed
+            to bring together students, faculty, clinicians, researchers,
+            and institutions through academic excellence and student engagement.
+          </p>
+        </div>
+
+        <div class="about-card" data-aos="fade-up" data-aos-delay="100">
+          <h3>Celebrating the Faculty</h3>
+          <p>
+            The summit commemorates the Anniversary of the Establishment
+            of the Faculty of Medicine and reflects the journey of growth,
+            achievement, and academic distinction.
+          </p>
+        </div>
+
+        <div class="about-card" data-aos="fade-up" data-aos-delay="200">
+          <h3>Three Pillars</h3>
+          <p>
+            Academic Excellence • Sports & Recreation • Community & Culture
+          </p>
+        </div>
+
+        <div class="about-card" data-aos="fade-up" data-aos-delay="300">
+          <h3>Organized By</h3>
+          <p>
+            Organized and coordinated by the Student Medical Association
+            in collaboration with faculty mentors and institutional leadership.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ACADEMIC EVENTS -->
+
+  <section id="academic">
+
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <h2>Academic Events</h2>
+        <p>
+          Competitive, engaging, and clinically relevant events crafted for future healthcare leaders.
+        </p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card" data-aos="zoom-in">
+          <div class="emoji">🧠</div>
+          <h3>Quiz Championship</h3>
+          <p>High-yield multidisciplinary medical quiz competition.</p>
+        </div>
+
+        <div class="card" data-aos="zoom-in" data-aos-delay="50">
+          <div class="emoji">⚖️</div>
+          <h3>Debate Cup</h3>
+          <p>Debating modern ethical and clinical controversies in medicine.</p>
+        </div>
+
+        <div class="card" data-aos="zoom-in" data-aos-delay="100">
+          <div class="emoji">🩺</div>
+          <h3>OSCE</h3>
+          <p>Objective Structured Clinical Examination with practical stations.</p>
+        </div>
+
+        <div class="card" data-aos="zoom-in" data-aos-delay="150">
+          <div class="emoji">🩻</div>
+          <h3>Pixel Prognosis</h3>
+          <p>Radiology and image interpretation challenge.</p>
+        </div>
+
+        <div class="card" data-aos="zoom-in" data-aos-delay="200">
+          <div class="emoji">🎭</div>
+          <h3>Clinical Charades</h3>
+          <p>Creative diagnostic and symptom-based performance rounds.</p>
+        </div>
+
+        <div class="card" data-aos="zoom-in" data-aos-delay="250">
+          <div class="emoji">🎤</div>
+          <h3>JAM — Just a Minute</h3>
+          <p>Think fast and speak smarter under pressure.</p>
+        </div>
+
+        <div class="card" data-aos="zoom-in" data-aos-delay="300">
+          <div class="emoji">📋</div>
+          <h3>Research Showcase</h3>
+          <p>Presentation of student research, innovation, and case studies.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SPORTS -->
+
+  <section id="sports">
+
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <h2>Sports & Recreation</h2>
+        <p>
+          Competitive spirit beyond academics with team sports, individual events, and eSports.
+        </p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card" data-aos="fade-up">
+          <h3>🏏 Team Sports</h3>
+          <p>Cricket, Basketball, Volleyball</p>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <h3>🏸 Individual Sports</h3>
+          <p>Badminton, Table Tennis, Athletics</p>
+        </div>
+
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <h3>🎮 eSports</h3>
+          <p>PUBG Mobile, Valorant, FIFA</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- COMMUNITY -->
+
+  <section id="community">
+
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <h2>Community & Culture</h2>
+        <p>
+          Building connections, outreach, and unforgettable experiences together.
+        </p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card" data-aos="flip-left">
+          <h3>🏥 Health Outreach Camp</h3>
+          <p>Open community screening and awareness initiatives.</p>
+        </div>
+
+        <div class="card" data-aos="flip-left" data-aos-delay="100">
+          <h3>🎶 Social Mixer / DJ Night</h3>
+          <p>Celebrate friendships, collaboration, and student life.</p>
+        </div>
+
+        <div class="card" data-aos="flip-left" data-aos-delay="200">
+          <h3>🔥 Bonfire Night</h3>
+          <p>Relaxed networking and evening social gathering.</p>
+        </div>
+
+        <div class="card" data-aos="flip-left" data-aos-delay="300">
+          <h3>🎭 Cultural Night</h3>
+          <p>Music, dance, performances, and cultural expression.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- TRIALS -->
+
+  <section class="trials" id="trials">
+
+    <div class="container">
+
+      <div class="trials-box" data-aos="zoom-in">
+
+        <h2>Team Selection Trials — May 2026</h2>
+
+        <p>
+          Due to examinations in June and July and students returning in October,
+          official team selection trials will take place in May 2026.
+          Interested students are encouraged to register early and stay updated
+          regarding schedules, eligibility, and announcements.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- HIGHLIGHTS -->
+
+  <section id="highlights">
+
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <h2>Why CLINICON?</h2>
+        <p>
+          A summit built to shape future clinicians, leaders, and innovators.
+        </p>
+      </div>
+
+      <div class="highlight-list">
+
+        <div class="highlight-item" data-aos="fade-right">
+          🌍 International Participation
+        </div>
+
+        <div class="highlight-item" data-aos="fade-right" data-aos-delay="50">
+          🩺 Real Patient OSCE Exposure
+        </div>
+
+        <div class="highlight-item" data-aos="fade-right" data-aos-delay="100">
+          🎓 Distinguished Faculty & Speakers
+        </div>
+
+        <div class="highlight-item" data-aos="fade-right" data-aos-delay="150">
+          🤝 Diplomatic Representation
+        </div>
+
+        <div class="highlight-item" data-aos="fade-right" data-aos-delay="200">
+          🌟 Holistic Student Development
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- INTEREST -->
+
+  <section id="interest">
+
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <h2>Stay Updated</h2>
+        <p>
+          Register your interest and receive updates regarding registrations,
+          schedules, team trials, and announcements.
+        </p>
+      </div>
+
+      <div class="form-container" data-aos="fade-up">
+
+        <form>
+
+          <input type="text" placeholder="Full Name" required>
+
+          <input type="text" placeholder="Year of Study" required>
+
+          <input type="email" placeholder="Email Address" required>
+
+          <input type="tel" placeholder="WhatsApp Number" required>
+
+          <div>
+            <h3 style="margin-bottom:15px;color:var(--gold);">
+              Interested Events
+            </h3>
+
+            <div class="checkbox-grid">
+
+              <label><input type="checkbox"> Quiz</label>
+              <label><input type="checkbox"> Debate</label>
+              <label><input type="checkbox"> OSCE</label>
+              <label><input type="checkbox"> Pixel Prognosis</label>
+              <label><input type="checkbox"> Clinical Charades</label>
+              <label><input type="checkbox"> JAM</label>
+              <label><input type="checkbox"> Research Showcase</label>
+              <label><input type="checkbox"> Sports</label>
+
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn">
+            I’m Interested — Keep Me Updated
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-logo"></div>
+
+    <h3 style="color:var(--gold);margin-bottom:10px;">
+      CLINICON 2026
+    </h3>
+
+    <p>clinicon2026.edu</p>
+
+    <p style="margin-top:10px;color:#b9c0d0;">
+      Organized by Student Medical Association
+    </p>
+
+    <div class="socials">
+
+      <div class="social">IG</div>
+      <div class="social">FB</div>
+      <div class="social">YT</div>
+      <div class="social">IN</div>
+
+    </div>
+
+  </footer>
+
+  <!-- AOS -->
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+
+    AOS.init({
+      duration:1000,
+      once:true
+    });
+
+    // MOBILE MENU
+
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    // CLOSE MENU ON CLICK
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+    });
+
+    // FORM SUBMIT DEMO
+
+    document.querySelector("form").addEventListener("submit", function(e){
+      e.preventDefault();
+      alert("Thank you for registering your interest in CLINICON 2026!");
+    });
+
+  </script>
+
+</body>
+</html>
